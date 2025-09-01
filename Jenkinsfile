@@ -30,7 +30,7 @@ environment{
 		
         stage('sonarqube analysis') {
             steps {
-                withSonarQubeEnv('sonar_cred') {
+                withSonarQubeEnv('sonar_server') {
                 sh ''' 
 	          	${SCANNER_ENV}/bin/sonar-scanner \
 	         	-Dsonar.projectName=jenkins-website \
@@ -45,7 +45,7 @@ environment{
     steps {
         script {
             timeout(time: 1, unit: 'HOURS') {
-                def qg = waitForQualityGate(credentialsId: 'sonar_cred')
+                def qg = waitForQualityGate()
                 if (qg.status != "OK") {
                     echo "⚠️ Warning: Quality Gate failed but continuing pipeline. Status = ${qg.status}"
                 } else {
