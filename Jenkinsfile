@@ -8,7 +8,7 @@ tools{
 }
 
 environment{
-   SCANNER_ENV = tool 'sonar-scanner'
+   SCANNER_ENV = tool 'sonar_scanner'
 }
    
         stages{
